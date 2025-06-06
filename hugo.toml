@@ -1,0 +1,31 @@
+baseURL = 'https://joined.github.io/'
+languageCode = 'en-us'
+title = "Lorenzo Gasparini's site"
+theme = 'cactus'
+
+[[menu.main]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[menu.main]]
+name = "Writings"
+url = "/posts"
+weight = 2
+
+[[menu.main]]
+name = "About"
+url = "/about"
+weight = 3
+
+[markup]
+[markup.highlight]
+style = "catppuccin-latte"
+
+[params]
+[[params.social]]
+name = "github"
+link = "https://github.com/joined"
+[[params.social]]
+name = "linkedin"
+link = "https://www.linkedin.com/joined/"
