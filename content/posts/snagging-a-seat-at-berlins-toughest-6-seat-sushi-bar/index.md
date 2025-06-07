@@ -2,6 +2,7 @@
 date = '2025-06-06T12:04:16+02:00'
 title = 'Snagging a Seat at Berlin’s Toughest 6-Seat Sushi Bar'
 show_featured_image = false
+tags = ['Zenchef', 'scraping', 'Zapier']
 +++
 
 *Ever had trouble securing a table at a popular restaurant? Keep reading, this 15-minute hack will do the refreshing for you.*
@@ -15,8 +16,8 @@ We'll call the restaurant OTSUMI.
 
 OTSUMI works exclusively with advance reservations, and being one of the very few places of its kind in Berlin, securing a spot is quite a challenge.
 They use [Zenchef](https://www.zenchef.com/) as reservation engine.
-Reservations via Zenchef can be usually made via the Zenchef app or a widget on the restaurant's site, but OTSUMI doesn't have a site,
-so the Zenchef app is effectively the only way to a book a spot.
+Most restaurants that use Zenchef let you book through a widget on their site or the Zenchef app, but OTSUMI doesn't have a site,
+so the app is effectively the only way to a book a spot.
 
 I have been checking the availability on the app from time to time, and I am always greeted by the same message:
 
@@ -34,6 +35,10 @@ As mentioned, reservations can only be made via the Zenchef app, which is rather
 
 It would be much easier if the restaurant had a site with a booking widget, then we could simply open the browser developer tools and look at the network requests.
 So why don't we try doing that for another restaurant that offers a booking widget on their site?
+
+{{< notice warning >}}
+Zenchef’s API isn’t public; use responsibly and respect rate limits.
+{{< /notice >}}
 
 We visit the website with the open devtools, network tab, open the reservations widget and surely enough we see a promising GET request in there with URL
 
@@ -73,9 +78,9 @@ Nice! That's exactly the data we're looking for. Just... for the wrong restauran
 
 We could try to search for an endpoint in the Zenchef API that allows to search a restaurant (and hopefully get its ID) based on a name.
 After all, the app allows this kind of search, so there must be an endpoint for that hidden somewhere.
-Well, I searched around, asked ChatGPT for help, but I couldn't find that endpoint.
+I searched around, asked ChatGPT for help, but I couldn't find that endpoint.
 
-I was about to give up, and then an idea struck me: in the Zenchef app you can share a link to a restaurant. Could that link lead us to the ID we're looking for?
+I was about to give up when an idea struck: in the Zenchef app you can share a link to a restaurant. Could that link lead us to the ID we're looking for?
 
 So we open the restaurant in the app, click share, and we get a link like this:
 
@@ -92,9 +97,9 @@ Great! The 6-digit ID part of `restaurantUid` is exactly what we're looking for.
 Now we just have to build a *thing* that periodically makes a request to the `/getAvailabilitiesSummary` API endpoint, and notifies us when there is any availability.
 This *thing* could be built in a thousand different ways. The key requirement is that it should be running 24/7, so it has to be hosted on the cloud.
 We could write a simple Python script for this and have it run on e.g. a VPS, but then we'd have to worry about keeping it alive and a myriad of other annoying details.
-Ain't nobody got time for that.
+Who has time for server babysitting?
 
-Let's instead automate this with a (little-to-)no-code solution, [Zapier](https://zapier.com), which is free with some limitations.
+Let's instead automate this with a low-code solution, [Zapier](https://zapier.com), which is free with some limitations.
 
 We login and create a new workflow, or *Zap*. The first step of the Zap is the trigger, for which we use the "Schedule" component.
 In the free version we can choose a schedule as granular as "Every Hour". That will do it.
@@ -165,7 +170,7 @@ we test this step, and see the following output
 
 ![Zapier editor showing the test result of the second step of the workflow](images/step_2_test.png)
 
-Cool! Well, there's no availability, but the code works as intended.
+Cool! There's no availability, but the code works as intended.
 We get a `Free Dates` output variable that contains a comma-separated list of days in the next two months that have some
 bookable shifts, which we can use it in the next step(s).
 
@@ -189,7 +194,7 @@ Time goes on, and then...
 
 ![Email received indicating a spot can be booked](images/email.png)
 
-It worked 🎉 Too bad, I can't make on that day. We'll, I'll just wait for the next email I guess... but  wait, what's that?
+It worked 🎉 Too bad, I can't make on that day. I'll just wait for the next email I guess... but  wait, what's that?
 
 ![Email received indicating a spot can be booked](images/too_many_emails.png)
 

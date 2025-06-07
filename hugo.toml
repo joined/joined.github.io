@@ -1,7 +1,7 @@
 baseURL = 'https://joined.github.io/'
 languageCode = 'en-us'
 title = "Lorenzo Gasparini's site"
-theme = 'cactus'
+theme = ['hugo-notice', 'cactus']
 
 [[menu.main]]
 name = "Home"
@@ -13,16 +13,12 @@ name = "Writings"
 url = "/posts"
 weight = 2
 
-[[menu.main]]
-name = "About"
-url = "/about"
-weight = 3
-
 [markup]
 [markup.highlight]
 style = "catppuccin-latte"
 
 [params]
+description = "Hi! I'm Lorenzo Gasparini, a Full-Stack Web Developer based in Berlin, Germany."
 [[params.social]]
 name = "github"
 link = "https://github.com/joined"
