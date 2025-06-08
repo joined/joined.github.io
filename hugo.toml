@@ -25,3 +25,7 @@ link = "https://github.com/joined"
 [[params.social]]
 name = "linkedin"
 link = "https://www.linkedin.com/joined/"
+
+[caches]
+[caches.images]
+dir = ':cacheDir/images'
