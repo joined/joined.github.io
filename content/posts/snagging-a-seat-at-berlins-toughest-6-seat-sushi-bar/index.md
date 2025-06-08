@@ -5,7 +5,7 @@ show_featured_image = false
 tags = ['Zenchef', 'scraping', 'Zapier']
 +++
 
-*Ever had trouble securing a table at a popular restaurant? Keep reading, this 15-minute hack will do the refreshing for you.*
+*A six-seat sushi bar never frees up… unless you teach a bot to watch the door.*
 
 ## 1. The problem
 
