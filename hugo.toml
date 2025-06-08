@@ -19,6 +19,7 @@ style = "catppuccin-latte"
 
 [params]
 description = "Hi! I'm Lorenzo Gasparini, a Full-Stack Web Developer based in Berlin, Germany."
+logo = "images/avatar.jpg"
 [[params.social]]
 name = "github"
 link = "https://github.com/joined"
