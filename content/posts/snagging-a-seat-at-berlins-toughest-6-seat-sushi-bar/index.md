@@ -99,7 +99,7 @@ This *thing* could be built in a thousand different ways. The key requirement is
 We could write a simple Python script for this and have it run on e.g. a VPS, but then we'd have to worry about keeping it alive and a myriad of other annoying details.
 Who has time for server babysitting?
 
-Let's instead automate this with a low-code solution, [Zapier](https://zapier.com), which is free with some limitations.
+Let's instead automate this with a low-code solution, [Zapier](https://zapier.com), which is a terrible value at 17.91€/month (and I totally did not realize that after writing this article).
 
 We login and create a new workflow, or *Zap*. The first step of the Zap is the trigger, for which we use the "Schedule" component.
 In the free version we can choose a schedule as granular as "Every Hour". That will do it.
